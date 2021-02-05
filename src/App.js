@@ -15,11 +15,14 @@ import Error from "./pages/Error";
 
 
 // Components
+import Header from "./components/Header";
 
 
 function App() {
     return (
         <BrowserRouter>
+            <Header/>
+
             <Switch>
                 <Route exact path="/">
                     <Home/>
@@ -29,7 +32,7 @@ function App() {
                     <About/>
                 </Route>
 
-                <Route path="/card">
+                <Route path="/cart">
                     <Cart/>
                 </Route>
 

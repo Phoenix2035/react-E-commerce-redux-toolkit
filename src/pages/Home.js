@@ -1,7 +1,17 @@
 import React from "react";
+import Hero from "../components/Hero";
+import {Link} from "react-router-dom";
 
- function Home() {
-  return <h1>hello from home page</h1>;
+function Home() {
+    return (
+        <>
+            <Hero>
+                <Link to="/products" className="btn btn-primary btn-hero">
+                    our products
+                </Link>
+            </Hero>
+        </>
+    )
 }
 
 

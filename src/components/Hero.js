@@ -1,7 +1,15 @@
 import React from "react";
 
-function Hero() {
-  return <h1>hello from hero</h1>;
+function Hero({children}) {
+    return (
+        <div className="hero">
+            <div className="banner">
+                <h1>think, code, deploy</h1>
+                <p>Embrace your choices - we do</p>
+                {children}
+            </div>
+        </div>
+    )
 }
 
 
