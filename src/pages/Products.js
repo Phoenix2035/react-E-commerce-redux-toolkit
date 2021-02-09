@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { getProductsAsync } from "../redux/models/products.reducer"
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect} from "react";
+import {getProductsAsync} from "../redux/models/products.reducer"
+import {useDispatch, useSelector} from "react-redux";
 import Url from "../utils/Url";
+import Loading from "../components/Loading";
+import ProductList from "../components/Products/ProductList";
 
 function Products() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.products.products).flat()
-    console.log(products)
-
-
+    const loading = useSelector(state => state.products.loading)
 
     useEffect(() => {
         if (!products.length) {
@@ -16,14 +16,10 @@ function Products() {
         }
     }, [])
 
+    if (loading) return <Loading/>
 
-    return (
-        <div>
-            {
-                products && products.map((item, i) => <div key={i}>{item.title}</div>)
-            }
-        </div>
-    )
+    return <ProductList title="our products" products={products}/>
+
 }
 
 export default Products
