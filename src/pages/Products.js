@@ -10,6 +10,7 @@ function Products() {
     const products = useSelector(state => state.products.products).flat()
     const loading = useSelector(state => state.products.loading)
 
+
     useEffect(() => {
         if (!products.length) {
             dispatch(getProductsAsync(Url))
