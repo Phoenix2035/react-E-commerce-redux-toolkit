@@ -10,11 +10,41 @@ const CartReducer = createSlice({
         total: 0,
         cartItems: 0
     },
-    reducers: {}
+    reducers: {
+        addToCart: (state, action) => {
+
+        },
+        increaseAmount: (state, action) => {
+
+        },
+        decreaseAmount: (state, action) => {
+
+        },
+        removeItem: (state, action) => {
+
+        },
+        clearCart: (state, action) => {
+
+        },
+        setCartItems: (state, action) => {
+            state.cartItems = action.payload
+        },
+        setTotal: (state, action) => {
+            state.total = action.payload
+        }
+    }
 })
 
 
-export const {} = CartReducer.actions
+export const {
+    addToCart,
+    increaseAmount,
+    decreaseAmount,
+    removeItem,
+    clearCart,
+    setCartItems,
+    setTotal
+} = CartReducer.actions
 
 export default CartReducer.reducer
 
