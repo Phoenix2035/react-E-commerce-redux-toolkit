@@ -10,7 +10,6 @@ function Products() {
     const products = useSelector(state => state.products.products).flat()
     const loading = useSelector(state => state.products.loading)
 
-    console.log(products)
 
 
     useEffect(() => {
