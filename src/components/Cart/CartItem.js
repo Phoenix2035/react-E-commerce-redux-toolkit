@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {FaAngleUp, FaAngleDown} from "react-icons/fa";
-import {useSelector, useDispatch} from "react-redux";
-import {removeItem} from "../../redux/models/cart.reducer";
+import {useDispatch} from "react-redux";
+import {removeItem, increaseAmount, decreaseAmount} from "../../redux/models/cart.reducer";
 
 function CartItem({id, title, image, price, amount}) {
     const dispatch = useDispatch()
-    const cart = useSelector(state => state.cart.cart)
+
+    useEffect(() => {
+        if (amount < 1) {
+            dispatch(removeItem(id))
+        }
+    }, [amount])
 
     return (
         <article className="cart-item">
@@ -14,7 +19,7 @@ function CartItem({id, title, image, price, amount}) {
                 <h4>{title}</h4>
                 <h5>${price}</h5>
                 <button
-                    onClick={() =>  dispatch(removeItem(id))}
+                    onClick={() => dispatch(removeItem(id))}
                     type="button"
                     className="cart-btn remove-btn"
                 >
@@ -23,10 +28,13 @@ function CartItem({id, title, image, price, amount}) {
             </div>
 
             <div>
-                <button type="button" className="cart-btn amount-btn" onClick={() => console.log("inc")}><FaAngleUp/>
+                <button type="button" className="cart-btn amount-btn" onClick={() => dispatch(increaseAmount(id))}>
+                    <FaAngleUp/>
                 </button>
                 <p className="item-amount">{amount}</p>
-                <button type="button" className="cart-btn amount-btn" onClick={() => console.log("dec")}><FaAngleDown/>
+                <button type="button" className="cart-btn amount-btn"
+                        onClick={() => dispatch(decreaseAmount(id, amount))}>
+                    <FaAngleDown/>
                 </button>
             </div>
         </article>

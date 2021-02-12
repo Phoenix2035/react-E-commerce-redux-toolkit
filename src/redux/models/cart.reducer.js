@@ -15,10 +15,10 @@ const CartReducer = createSlice({
 
         },
         increaseAmount: (state, action) => {
-
+            state.cart.map(item => item.id === action.payload && item.amount++)
         },
         decreaseAmount: (state, action) => {
-
+            state.cart.map(item => item.id === action.payload && item.amount--)
         },
         removeItem: (state, action) => {
             state.cart = state.cart.filter(item => item.id !== action.payload)
