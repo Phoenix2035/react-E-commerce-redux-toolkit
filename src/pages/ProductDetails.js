@@ -3,16 +3,29 @@ import Loading from "../components/Loading";
 
 import {useParams, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {addToCart} from "../redux/models/cart.reducer";
+import {addToCart, increaseAmount} from "../redux/models/cart.reducer";
 
 function ProductDetails() {
     const dispatch = useDispatch()
     const history = useHistory()
-    const {id} = useParams()
+    const {productId} = useParams()
 
     const products = useSelector(state => state.products.products).flat()
-    const product = products.find(item => item.id === parseInt(id))
+    const product = products.find(item => item.id === parseInt(productId))
+    const cart = useSelector(state => state.cart.cart).flat()
 
+
+    const handleAddToCartClick = () => {
+        const {id, image, title, price} = product
+        const item = cart.find(item => item.id === id)
+        if (item) {
+            cart.map(item => item.id === id && dispatch(increaseAmount(item.id)))
+        } else {
+            const newItem = {id, image, title, price, amount: 1}
+            dispatch(addToCart(newItem))
+        }
+        history.push("/cart")
+    }
 
 
     if (products.length === 0) {
@@ -27,10 +40,8 @@ function ProductDetails() {
                     <h1>{product.title}</h1>
                     <h2>{product.price}</h2>
                     <p>{product.description}</p>
-                    <button className="btn btn-primary btn-block" onClick={() => {
-                        dispatch(addToCart(product))
-                        history.push("/cart")
-                    }}>add to cart
+                    <button className="btn btn-primary btn-block" onClick={handleAddToCartClick}>
+                        add to cart
                     </button>
                 </article>
             </section>

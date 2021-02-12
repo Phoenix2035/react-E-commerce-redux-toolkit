@@ -6,6 +6,14 @@ import {removeItem, increaseAmount, decreaseAmount} from "../../redux/models/car
 function CartItem({id, title, image, price, amount}) {
     const dispatch = useDispatch()
 
+    const removeItemFromCart = () => {
+        if (amount === 1) {
+            dispatch(removeItem(id))
+        } else {
+            dispatch(decreaseAmount(id, amount))
+        }
+    }
+
 
     return (
         <article className="cart-item">
@@ -28,7 +36,7 @@ function CartItem({id, title, image, price, amount}) {
                 </button>
                 <p className="item-amount">{amount}</p>
                 <button type="button" className="cart-btn amount-btn"
-                        onClick={() => dispatch(decreaseAmount(id, amount))}>
+                        onClick={removeItemFromCart}>
                     <FaAngleDown/>
                 </button>
             </div>

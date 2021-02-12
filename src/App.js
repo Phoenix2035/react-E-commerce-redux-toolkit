@@ -48,7 +48,7 @@ function App() {
                     <Products/>
                 </Route>
 
-                <Route path="/products/:id" children={<ProductDetails/>}/>
+                <Route path="/products/:productId" children={<ProductDetails/>}/>
 
                 <Route path="*">
                     <Error/>

@@ -4,3 +4,8 @@ export function featuredProducts(data) {
         return item.category === "electronics"
     })
 }
+
+
+export function getCartFromLocalStorage() {
+    return localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+}

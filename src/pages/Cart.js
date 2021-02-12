@@ -12,6 +12,8 @@ function Cart() {
     const total = useSelector(state => state.cart.total)
 
     useEffect(() => {
+        // Localstorage
+        localStorage.setItem("cart", JSON.stringify(cart))
         // Cart Items
         let newCartItems = cart.reduce((total, cartItem) => {
             return (total += cartItem.amount)
