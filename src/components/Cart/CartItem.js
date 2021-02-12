@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {FaAngleUp, FaAngleDown} from "react-icons/fa";
 import {useDispatch} from "react-redux";
 import {removeItem, increaseAmount, decreaseAmount} from "../../redux/models/cart.reducer";
@@ -6,11 +6,6 @@ import {removeItem, increaseAmount, decreaseAmount} from "../../redux/models/car
 function CartItem({id, title, image, price, amount}) {
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (amount < 1) {
-            dispatch(removeItem(id))
-        }
-    }, [amount])
 
     return (
         <article className="cart-item">

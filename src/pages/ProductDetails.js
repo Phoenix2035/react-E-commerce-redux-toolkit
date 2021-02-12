@@ -2,9 +2,11 @@ import React from "react";
 import Loading from "../components/Loading";
 
 import {useParams, useHistory} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {addToCart} from "../redux/models/cart.reducer";
 
 function ProductDetails() {
+    const dispatch = useDispatch()
     const history = useHistory()
     const {id} = useParams()
 
@@ -26,7 +28,7 @@ function ProductDetails() {
                     <h2>{product.price}</h2>
                     <p>{product.description}</p>
                     <button className="btn btn-primary btn-block" onClick={() => {
-                        // addToCart
+                        dispatch(addToCart(product))
                         history.push("/cart")
                     }}>add to cart
                     </button>
